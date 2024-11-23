@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Companies from "./Companies";
-import Users from "./Users";
+import Companies from "./companies";
+import Users from "./users";
 
 const Tabs_ = () => {
   return (
@@ -16,7 +16,10 @@ const Tabs_ = () => {
       <TabsContent value="Users" className="w-full flex-1   overflow-scroll">
         <Users />
       </TabsContent>
-      <TabsContent value="Companies" className="b w-full flex-1">
+      <TabsContent
+        value="Companies"
+        className="w-full flex-1   overflow-scroll"
+      >
         <Companies />
       </TabsContent>
     </Tabs>

@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Tabs_ from "@/components/Tabs";
+import Header from "@/components/header";
+import Tabs_ from "@/components/tabs";
 
 export default function Home() {
   return (
