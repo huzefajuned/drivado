@@ -13,9 +13,6 @@ type User = {
   isActive: boolean;
 };
 
-
-
-
 const Users = async () => {
   const res = await fetch("https://673736a9aafa2ef222330e54.mockapi.io/users");
   const data = await res.json();
@@ -35,11 +32,13 @@ const Users = async () => {
                 <AvatarImage src={"https://github.com/shadcn.png"} />
               </Avatar>
 
-              <h2 className="text-lg  text-gray-900 truncate  font-bold w-full text-end">{user.name}</h2>
+              <h2 className="text-lg  text-gray-900 truncate  font-bold w-full text-end">
+                {user.name}
+              </h2>
             </div>
           </DrawerTrigger>
           {/* single user details... */}
-          <Details   user={user}/>
+          <Details user={user} />
         </Drawer>
       ))}
     </div>
