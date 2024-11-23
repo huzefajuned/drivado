@@ -1,9 +1,9 @@
 import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import Companies from "./Companies";
 import Users from "./Users";
 
-const Tabs_ = () => {
+const Tab = () => {
   return (
     <Tabs
       defaultValue="Users"
@@ -26,4 +26,4 @@ const Tabs_ = () => {
   );
 };
 
-export default Tabs_;
+export default Tab;

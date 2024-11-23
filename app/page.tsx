@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import Tabs_ from "@/components/Tabs";
+import Header from "@/app/components/Header";
+import Tabs from "@/app/components/Tabs";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <h2 className="bg-white p-4 text-2xl rounded-xl font-bold">
           User management & Company management{" "}
         </h2>
-        <Tabs_/>
+        <Tabs/>
       </section>
     </div>
   );
