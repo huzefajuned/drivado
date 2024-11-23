@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Companies from "./companies";
-import Users from "./users";
+import Companies from "./Companies";
+import Users from "./Users";
 
 const Tabs_ = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Drawer, DrawerTrigger } from "./ui/drawer";
-import Details from "./userDetails";
+import Details from "./Details";
 
 // Define the type for a single user
 type User = {
