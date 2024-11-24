@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import Details from "./Details";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { apiRoutes } from "@/lib/utils";
 
 // Define the type for a single user
 type Company = {
@@ -14,15 +15,13 @@ type Company = {
 };
 
 const Companies = async () => {
-  const res = await fetch(
-    "https://673736a9aafa2ef222330e54.mockapi.io/company"
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.companies}`);
   const data = await res.json();
 
   return (
     <div className=" flex flex-row flex-wrap justify-center m-auto gap-4 p-2 ">
       {data.map((user: Company, i: number) => (
-        <Dialog key={i *2}>
+        <Dialog key={i * 2}>
           <DialogTrigger>
             <div
               key={user.id}

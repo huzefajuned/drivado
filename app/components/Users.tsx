@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import Details from "./Details";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { apiRoutes } from "@/lib/utils";
 
 // Define the type for a single user
 type User = {
@@ -14,7 +15,7 @@ type User = {
 };
 
 const Users = async () => {
-  const res = await fetch("https://673736a9aafa2ef222330e54.mockapi.io/users");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.users}`);
   const data = await res.json();
 
   return (

@@ -4,10 +4,10 @@ import { Pencil, Trash2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Form from "./Form";
 
 // / Define the type for a single user
 type User = {
@@ -18,6 +18,7 @@ type User = {
   email: string;
   mobileNumber: string;
   isActive: boolean;
+  companyId?: number;
 };
 // Define the props type for the Details component
 type DetailsProps = {
@@ -36,15 +37,15 @@ const Details = ({ user }: DetailsProps) => {
           <AvatarImage src={"https://github.com/shadcn.png"} />
         </Avatar>
         <div>
-          <h2 className="text-lg font-medium text-gray-800">
-            {user.name || user.companyName}
+          <h2 className="text-xl font-medium text-black">
+            Name : {user.name || user.companyName}
           </h2>
-          <p className="text-xl text-gray-600">{user.email}</p>
+          <p className="text-lg text-gray-800"> Email : {user.email}</p>
         </div>
       </div>
 
       {/* Details Section */}
-      <div className="space-y-2">
+      <div className="space-y-2  mt-5">
         <div className="flex justify-between items-center">
           <span className="text-sm font-semibold text-gray-700">
             Mobile Number:
@@ -61,21 +62,29 @@ const Details = ({ user }: DetailsProps) => {
             {user.isActive ? "Active" : "Inactive"}
           </span>
         </div>
+
+        {user.companyId && (
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-semibold text-gray-700">
+              Company :
+            </span>
+            <span className="text-sm font-semibold text-gray-700">
+              {user.companyId}
+            </span>
+          </div>
+        )}
       </div>
       {/* Action Buttons */}
       <div className="flex justify-end items-center m-4 space-x-4">
         {/* Edit icon */}
 
-        <Dialog>
+        <Dialog  >
           <DialogTrigger>
             <Pencil className="hover:text-blue-700" />
           </DialogTrigger>
           <DialogContent>
-            <DialogHeader>
-              <DialogDescription>
-                <p>user : {user.name || user.companyName}</p>
-              </DialogDescription>
-            </DialogHeader>
+            <DialogHeader>Edit Your profile!</DialogHeader>
+            <Form user={user} />
           </DialogContent>
         </Dialog>
 
