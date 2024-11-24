@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
-import { Drawer, DrawerTrigger } from "./ui/drawer";
 import Details from "./Details";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 // Define the type for a single user
 type User = {
@@ -18,28 +18,29 @@ const Users = async () => {
   const data = await res.json();
 
   return (
-    <div className=" flex flex-row flex-wrap justify-center m-auto gap-4 p-2">
+    <div className=" flex flex-row flex-wrap justify-center m-auto gap-4 p-2 ">
       {data.map((user: User, i: number) => (
-        <Drawer key={i * 2}>
-          <DrawerTrigger asChild>
+        <Dialog key={i * 3}>
+          <DialogTrigger>
             <div
               key={user.id}
-              className=" max-w-sm w-full shadow-md rounded-lg flex flex-row justify-around  items-center p-2 hover:text-white hover:bg-gray-200 cursor-pointer
+              className=" max-w-sm w-full shadow-md rounded-lg flex flex-row justify-around  items-center p-4 hover:text-white hover:bg-green-200 cursor-pointer
           "
             >
               {/* avatar */}
-              <Avatar>
-                <AvatarImage src={"https://github.com/shadcn.png"} />
+              <Avatar key={i}>
+                <AvatarImage src={`https://i.pravatar.cc/150?img=${i + 1}`} />
               </Avatar>
 
               <h2 className="text-lg  text-gray-900 truncate  font-bold w-full text-end">
                 {user.name}
               </h2>
             </div>
-          </DrawerTrigger>
-          {/* single user details... */}
-          <Details user={user} />
-        </Drawer>
+          </DialogTrigger>
+          <DialogContent>
+            <Details user={user} />
+          </DialogContent>
+        </Dialog>
       ))}
     </div>
   );
