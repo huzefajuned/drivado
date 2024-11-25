@@ -3,19 +3,12 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import Details from "./Details";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { apiRoutes } from "@/lib/utils";
-
-// Define the type for a single user
-type Company = {
-  id: string;
-  companyName: string;
-  avatar: string;
-  email: string;
-  mobileNumber: string;
-  isActive: boolean;
-};
+import { Company } from "../_types/typsx";
 
 const Companies = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.companies}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.companies}`
+  );
   const data = await res.json();
 
   return (

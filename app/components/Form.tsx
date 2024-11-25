@@ -8,27 +8,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { apiRoutes } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
-type User = {
-  id: string;
-  name?: string;
-  companyName?: string;
-  avatar: string;
-  email: string;
-  mobileNumber: string;
-  isActive: boolean;
-  companyId?: number;
-};
-
-type DetailsProps = {
-  user: User;
-};
+import { DetailsProps, User } from "../_types/typsx";
 
 const Form = ({ user }: DetailsProps) => {
   const [formData, setFormData] = useState<User>({ ...user });
   const [isLoading, setIsLoading] = useState(false);
+  const [tofetchApi, setToFetchApi] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,14 +32,30 @@ const Form = ({ user }: DetailsProps) => {
     }));
   };
 
+  // fetch api based on types , either users or company!
+  const usersApiFetch = `${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.users}/${formData.id}`;
+  const companyApiFetch = `${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.companies}/${formData.id}`;
+
+  console.log(
+    "formData.companyId",
+    formData.companyId,
+    typeof formData.companyId
+  );
+
+  useEffect(() => {
+    if (formData.companyId !== undefined) {
+      setToFetchApi(usersApiFetch);
+    } else {
+      setToFetchApi(companyApiFetch);
+    }
+  }, []);
+
   const handleSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const api = `${process.env.NEXT_PUBLIC_BASE_URL}/${apiRoutes.users}/${
-        formData.id || ""
-      }`;
-
+      const api = `${tofetchApi}`;
+      console.log("api hit :", api);
       const response = await fetch(api, {
         method: "PUT",
         headers: {
@@ -79,7 +82,7 @@ const Form = ({ user }: DetailsProps) => {
       //delay the window loading!!
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1000);
     }
   };
   return (

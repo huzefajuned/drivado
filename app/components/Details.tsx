@@ -8,22 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Form from "./Form";
-
-// / Define the type for a single user
-type User = {
-  id: string;
-  name?: string;
-  companyName?: string;
-  avatar: string;
-  email: string;
-  mobileNumber: string;
-  isActive: boolean;
-  companyId?: number;
-};
-// Define the props type for the Details component
-type DetailsProps = {
-  user: User;
-};
+import { DetailsProps } from "../_types/typsx";
 
 const Details = ({ user }: DetailsProps) => {
   return (
